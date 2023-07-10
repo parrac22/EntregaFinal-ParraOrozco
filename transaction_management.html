@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Gastos</title>
+    <link rel="shortcut icon" href="images/teclab_logo.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/clases.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="js/main.js"></script>
+</head>
+<body>
+    <h1>Mis Gastos </h1>
+    <p>Gestiona tus transacciones</p>
+    <button class = "movementButton"> <a href = "home.html"> Volver al home </a> </button>
+    <hr>
+    <div class = 'inputContainer'>
+        <select id = "dropDownMenu">
+            <option disabled selected hidden>Selecciona la categoria de gasto</option>
+        </select>
+        <input type = 'number' id="numberInput" placeholder="Ingresa el monto del gasto" onkeydown= "return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189">
+        <button class = 'saveButton'> Guardar transaccion</button>
+
+    </div>
+    <hr>
+    <div class = 'tableContainer'>
+    <hr>
+    </div>
+</body>
+</html>
