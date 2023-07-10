@@ -3,6 +3,7 @@ const crearId = () => Math.random().toString(36).substr(2, 9)
 const numberInput = document.querySelector('#numberInput')
 const dropDownMenu = document.querySelector('#dropDownMenu')
 const tableContainer = document.querySelector('.tableContainer')
+const scorecardTotalExpenditure = document.querySelector('#totalGastado')
 
 
 const eliminarTransaccionButton = document.querySelectorAll('.eliminarTransaccion')
@@ -31,29 +32,6 @@ const guardarEnLocalStorage = ()=> {
     objetoTransaccion = construirTransaccion()
     localStorage.setItem(objetoTransaccion.id, JSON.stringify(objetoTransaccion))
 }
-
-// const eliminarDeLocalStorage = (id)=> {
-//     Swal.fire({
-//         title: '¿Realmente deseas eliminar la transacción?',  
-//         showCancelButton: true,
-//         confirmButtonText: 'Si'
-//         // customClass: {
-//         //   actions: 'my-actions',
-//         //   cancelButton: 'order-1 right-gap',
-//         //   confirmButton: 'order-2',
-//         //   denyButton: 'order-3',
-//         // }
-//       }).then((result) => {
-//         if (result.isConfirmed) {
-//           localStorage.removeItem(id)
-//         //   Swal.fire('Transaccion Eliminada', '', 'success')
-//         }
-//       })
-    
-    
-    
-    
-// }
 
 const eliminarDeLocalStorage = async (id) => {
     try {
@@ -88,11 +66,27 @@ const obtenerLedgerLocalStorage = () => {
     return ledger
 }
 
+const calcularTotalGastos = (arrayLedger) => {
+    ledger = new Ledger(arrayLedger)
+    total = ledger.calcularGastoTotal()
+    return total || 0
+}
+
+const obtenerObjetoGastoCategoria = (arrayLedger) => {
+    ledger = new Ledger(arrayLedger)
+    objetoGastoCategoria= ledger.calcularGastoPorCategoria() || undefined
+    return objetoGastoCategoria
+}
+
+
 const activarClickEnBotonGuardar = ()=> {
     const saveButton = document.querySelector('.saveButton')
     saveButton.addEventListener('click', ()=> {
         guardarEnLocalStorage()
         arrayLedger = obtenerLedgerLocalStorage()
+        totalGasto = calcularTotalGastos(arrayLedger)
+
+
         llenarTablaTransacciones(arrayLedger)
         dropDownMenu.value = 'Selecciona la categoria de gasto'
         numberInput.value = ''
@@ -222,17 +216,7 @@ const llenarTablaGastoCategoria = (objetoGastoCategoria) => {
     }
 }
 
-const calcularTotalGastos = (arrayLedger) => {
-    ledger = new Ledger(arrayLedger)
-    total = ledger.calcularGastoTotal()
-    return total || 0
-}
 
-const obtenerObjetoGastoCategoria = (arrayLedger) => {
-    ledger = new Ledger(arrayLedger)
-    objetoGastoCategoria= ledger.calcularGastoPorCategoria() || undefined
-    return objetoGastoCategoria
-}
 
 const realizarCargaInicialApp = () => {
     arrayLedger = obtenerLedgerLocalStorage()
