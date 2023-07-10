@@ -5,29 +5,40 @@
     <link rel="shortcut icon" href="images/teclab_logo.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
     <script src="js/clases.js"></script>
     <script defer src="js/home.js"></script>
 </head>
 <body>
-    <h1>Mis Gastos </h1>
-    <p>Lleva control de tus egresos, y clasificalos por categorias</p>
+    <h1>Mis Gastos</h1>
+    <p>Monitorea tus gastos por categoria</p>
     <hr>
-    <div class="scorecardContainer">
+    <div class="main-container">
+      <div class="scorecard-container">
         <div class="scorecard">
-          <h2 class="name">Carlos Parra</h2>
-          <p class="total" id="totalGastado">Total gastado: </p>
-          <div class = 'inputContainer'>
-            <select id = "dropDownMenu">
+          <div class="scorecard-left">
+            <h2 class="name">Carlos Parra</h2>
+            <p class="total" id="totalGastado">Total gastado:</p>
+            <div class="inputContainer">
+              <select id="dropDownMenu">
                 <option disabled selected hidden>Selecciona la categoria de gasto</option>
-            </select>
-            <input type = 'number' id="numberInput" placeholder="Ingresa el monto del gasto" onkeydown= "return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189">
-            <button class = 'saveButton'> Guardar transacción</button>
-            <button class = "movementButton"> <a href = "transaction_management.html"> Gestionar Transacciones </a> </button>
-    
+              </select>
+              <input type="number" id="numberInput" placeholder="Ingresa el monto del gasto" onkeydown="return event.keyCode !== 69 && event.keyCode !== 187 && event.keyCode !== 189">
+            </div>
+            <div class = "buttonContainer">
+                <button class="saveButton">Guardar transacción</button>
+                <button class="movementButton"><a href="transaction_management.html">Gestionar Transacciones</a></button>
+            </div>
+            
+          </div>
+          <div class="scorecard-right">
+            <div class="donutChartContainer">
+              <canvas class="donutChartCanvas"></canvas>
+            </div>
+          </div>
         </div>
-        </div>
-    </div>  
-    <hr>      
-
-</body>
+      </div>
+    </div>
+    <hr>
+  </body>
 </html>
